@@ -1,7 +1,10 @@
 import { useProducts } from "../contexts/product-context";
 
 export const Filters = () => {
-  const { dispatch: dispatchProducts } = useProducts();
+  const {
+    state: { sortBy },
+    dispatch: dispatchProducts
+  } = useProducts();
   return (
     <div className="filters-container">
       <fieldset>
@@ -11,6 +14,7 @@ export const Filters = () => {
             onChange={() =>
               dispatchProducts({ type: "SORT", payload: "LOW_TO_HIGH" })
             }
+            checked={sortBy === "LOW_TO_HIGH"}
             className="m-xs-lr"
             type="radio"
             name="sort-by"
@@ -23,6 +27,7 @@ export const Filters = () => {
             onChange={() =>
               dispatchProducts({ type: "SORT", payload: "HIGH_TO_LOW" })
             }
+            value={sortBy === "HIGH_TO_LOW"}
             className="m-xs-lr"
             type="radio"
             name="sort-by"
