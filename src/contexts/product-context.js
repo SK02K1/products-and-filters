@@ -1,18 +1,10 @@
 import { createContext, useContext, useReducer } from "react";
+import { productsReducer } from "../reducers/products-reducer";
 
 const ProductContext = createContext(null);
 
-const productReducer = (state, { type, payload }) => {
-  switch (type) {
-    case "SORT":
-      return { ...state, sortBy: payload };
-    default:
-      return state;
-  }
-};
-
 const ProductsProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(productReducer, {
+  const [state, dispatch] = useReducer(productsReducer, {
     sortBy: null
   });
 
