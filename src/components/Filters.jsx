@@ -2,7 +2,7 @@ import { useProducts } from "../contexts/product-context";
 
 export const Filters = () => {
   const {
-    state: { sortBy, rating, price },
+    state: { sortBy, rating, price, category },
     dispatch: dispatchProducts
   } = useProducts();
   return (
@@ -99,6 +99,61 @@ export const Filters = () => {
             id="range"
             value={price}
           />
+        </label>
+      </fieldset>
+      <fieldset>
+        <legend>Category</legend>
+        <label className="m-xs-tblr" htmlFor="drone">
+          <input
+            onChange={() =>
+              dispatchProducts({ type: "TOGGLE_CATEGORY", payload: "drone" })
+            }
+            className="m-xs-lr"
+            type="checkbox"
+            name="category"
+            id="drone"
+            checked={category.drone}
+          />
+          drone
+        </label>
+        <label className="m-xs-tblr" htmlFor="camera">
+          <input
+            onChange={() =>
+              dispatchProducts({ type: "TOGGLE_CATEGORY", payload: "camera" })
+            }
+            className="m-xs-lr"
+            type="checkbox"
+            name="category"
+            id="camera"
+            checked={category.camera}
+          />
+          camera
+        </label>
+        <label className="m-xs-tblr" htmlFor="gimbal">
+          <input
+            onChange={() =>
+              dispatchProducts({ type: "TOGGLE_CATEGORY", payload: "gimbal" })
+            }
+            className="m-xs-lr"
+            type="checkbox"
+            name="category"
+            id="gimbal"
+            checked={category.gimbal}
+          />
+          gimbal
+        </label>
+        <label className="m-xs-tblr" htmlFor="lens">
+          <input
+            onChange={() =>
+              dispatchProducts({ type: "TOGGLE_CATEGORY", payload: "lens" })
+            }
+            className="m-xs-lr"
+            type="checkbox"
+            name="category"
+            id="lens"
+            checked={category.lens}
+          />
+          lens
         </label>
       </fieldset>
     </div>
