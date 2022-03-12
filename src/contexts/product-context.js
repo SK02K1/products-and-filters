@@ -6,7 +6,8 @@ const ProductContext = createContext(null);
 const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productsReducer, {
     sortBy: null,
-    rating: null
+    rating: null,
+    price: 6000
   });
 
   return (

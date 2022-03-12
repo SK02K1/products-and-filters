@@ -2,7 +2,7 @@ import { useProducts } from "../contexts/product-context";
 
 export const Filters = () => {
   const {
-    state: { sortBy, rating },
+    state: { sortBy, rating, price },
     dispatch: dispatchProducts
   } = useProducts();
   return (
@@ -81,6 +81,24 @@ export const Filters = () => {
             id="1 star & above"
           />
           1 star & above
+        </label>
+      </fieldset>
+      <fieldset>
+        <legend>Price</legend>
+        <label className="m-xs-tblr" htmlFor="price">
+          under {price}
+          <input
+            className="m-xs-lr"
+            onChange={(e) =>
+              dispatchProducts({ type: "PRICE", payload: e.target.value })
+            }
+            type="range"
+            name="range"
+            min={90}
+            max={6000}
+            id="range"
+            value={price}
+          />
         </label>
       </fieldset>
     </div>

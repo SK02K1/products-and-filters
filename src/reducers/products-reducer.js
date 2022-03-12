@@ -4,6 +4,8 @@ export const productsReducer = (state, { type, payload }) => {
       return { ...state, sortBy: payload };
     case "RATING":
       return { ...state, rating: payload };
+    case "PRICE":
+      return { ...state, price: payload };
     default:
       return state;
   }

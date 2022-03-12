@@ -5,7 +5,7 @@ import { items } from "../data/items";
 
 export const Products = () => {
   const {
-    state: { sortBy, rating }
+    state: { sortBy, rating, price }
   } = useProducts();
 
   const getSortedData = (data, sortBy) => {
@@ -23,12 +23,16 @@ export const Products = () => {
     return rating ? data.filter((itemInfo) => itemInfo.rating >= rating) : data;
   };
 
+  const filterByPrice = (data) => {
+    return data.filter((itemInfo) => itemInfo.price <= price);
+  };
+
   const getFilteredData = (...fns) => (data) => {
     return fns.reduce((filteredData, func) => func(filteredData), data);
   };
 
   const sortedItems = getSortedData(items, sortBy);
-  const filterData = getFilteredData(filterByRating);
+  const filterData = getFilteredData(filterByRating, filterByPrice);
   const filteredData = filterData(sortedItems);
 
   return (
