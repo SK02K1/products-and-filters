@@ -5,7 +5,7 @@ import { items } from "../data/items";
 
 export const Products = () => {
   const {
-    state: { sortBy }
+    state: { sortBy, rating }
   } = useProducts();
 
   const getSortedData = (data, sortBy) => {
@@ -19,14 +19,24 @@ export const Products = () => {
     }
   };
 
+  const filterByRating = (data) => {
+    return rating ? data.filter((itemInfo) => itemInfo.rating >= rating) : data;
+  };
+
+  const getFilteredData = (...fns) => (data) => {
+    return fns.reduce((filteredData, func) => func(filteredData), data);
+  };
+
   const sortedItems = getSortedData(items, sortBy);
+  const filterData = getFilteredData(filterByRating);
+  const filteredData = filterData(sortedItems);
 
   return (
     <div>
       <Filters />
       <h1 className="text-center text-xl m-xl-tb">Products</h1>
       <div className="grid-container auto m-xl-tb">
-        {sortedItems.map((itemInfo) => (
+        {filteredData.map((itemInfo) => (
           <ProductCard key={itemInfo.id} itemInfo={itemInfo} />
         ))}
       </div>
