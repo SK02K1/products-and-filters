@@ -7,6 +7,12 @@ export const Filters = () => {
   } = useProducts();
   return (
     <div className="filters-container">
+      <button
+        onClick={() => dispatchProducts({ type: "CLEAR_FILTERS" })}
+        className="btn btn-secondary"
+      >
+        CLEAR
+      </button>
       <fieldset>
         <legend>Sort by</legend>
         <label className="m-xs-tb" htmlFor="low-to-high">
